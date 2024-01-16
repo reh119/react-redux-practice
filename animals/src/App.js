@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import AnimalShow from "./AnimalShow";
 // return random animal/string
 function getRandomAnimal() {
   const animals = ["bird", "cat", "gator", "dog", "gator", "horse"];
@@ -13,13 +13,28 @@ function App() {
   // handleclick function using arrow function
   const handleClick = () => {
     setAnimals([...animals, getRandomAnimal()]); // c takes all existing elements from animals array, and puts them into a new one. at the end array it puts in a new random animal
-    
   };
+
+//   const renderedAnimals = [
+//     <AnimalShow type = {animals[0]} />,
+//     <AnimalShow type = {animals[1]} /> ...
+//   ]
+ // OR -> 
+  const renderedAnimals = animals.map((animal,index) => {
+    return <AnimalShow type = {animal} key = {index} />
+  });
+  // .map->  you take all elements out of an array, and one by one, you pass it into a 'transformation function' 
+  // for us, animal like 'cat' is provided as first argument. inside of function we will 'work' or do something to this 'cat' string. 
+  // whatever is returned from this function is put into a new array at the exact same index. , this is reperated for all elements in array. 
+  // once we do this for all elements in og array, the entire map function will return the brand new array we just created / transformed. 
+  // the equivalent of what is above renderedAnimals
+  // frequentley used when building lists in React
+  // 
   return (
     <div>
       <button onClick={handleClick}>Add Animal</button>
       <div> 
-        {animals}
+        {renderedAnimals}
       </div>
     </div>
   );
