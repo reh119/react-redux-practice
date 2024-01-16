@@ -8,3 +8,12 @@ const root = ReactDOM.createRoot(el);
 
 root.render(<App/>);
 
+/* Notes:
+
+Here we want to focus on the event system and the state system 
+
+Event System <----- Detecting a user clicking the button
+
+State system <----- Update content on screen being rendered. 
+
+*/
