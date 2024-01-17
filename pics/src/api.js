@@ -13,16 +13,14 @@ const searchImages = async (term) => {
       query: term, // what user types into search bar
     },
   });
-  //console.log(response.data.results); // array of images 
+  //console.log(response.data.results); // array of images
 
   return response.data.results;
 };
-export default searchImages; 
-
-
+export default searchImages;
 
 /* Async/Await Notes:
     await -> tells js to wait for request we are making to respond back, once we get it we can move forward.
     aysnc -> keyword used with await. if we use await we must mark the enclosing function with async keyword. 
 
-*/ 
+*/
