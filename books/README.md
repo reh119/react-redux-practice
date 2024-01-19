@@ -1,0 +1,1 @@
+Last feature i did not include was adding pictures next to books we added to our list. all else is functional
