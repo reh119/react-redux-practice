@@ -1,50 +1,72 @@
+import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
 
-function App() {
+function App() { // every time something is re rendered do we start back up at begginnig of PP? 
   const [books, setBooks] = useState([]);
 
+  const fetchBooks = async () => { // when do we call this? 
+    const response = await axios.get("http://localhost:3001/books");
+    setBooks(response.data);
+  };
 
+  useEffect(() => { 
+    fetchBooks();
+  },[])
 
-  const deleteBookById = (id) =>{
+  const deleteBookById = async (id) => {
+
+    await axios.delete(`http://localhost:3001/books/${id}`);
     // removing object out of array, we usually use filter function. reference lecture or react doc
     const updatedBooks = books.filter((book) => {
-        return book.id !== id; 
-        //so say we want to remove book with id of 3, when we find the book with this id, return false, meaning it wont be added to new array leaving book with id 3 out 
-
+      return book.id !== id;
+      //so say we want to remove book with id of 3, when we find the book with this id, return false, meaning it wont be added to new array leaving book with id 3 out
     });
     setBooks(updatedBooks); // update state with new array
     // now we need to communicate this function to other children components as props
-  }
+  };
 
-  const createBook = (title) => {
-    // title being passing in from user input
-    // console.log("Need to add book with", title);
+  const createBook = async (title) => {
+    const response = await axios.post("http://localhost:3001/books", {
+      title, // since its the argument passed in we dont need title: "title"
+    });
     const updatedBooks = [
       ...books,
-      { id: Math.round(Math.random() * 9999), title: title },
+      response.data,
+      //   { id: Math.round(Math.random() * 9999), title: title }, // pre api line
     ]; // the '...books' syntax says go and find exisiting books piece of state, copy-paste the contents into new array. after this we add in new objects. order can be flipped to add in at beggining
     setBooks(updatedBooks); // update books state with new contents from updatedBooks
   };
 
-  const editBookById = (id, newTitle) => {
+  const editBookById = async (id, newTitle) => {
+
+    const response = await axios.put(`http://localhost:3001/books/${id}`,{
+        title: newTitle
+    });
+        // update local book
     // find object inside array then make change using map
     const updatedBooks = books.map((singleBook) => {
-        if(singleBook.id===id){ // this is book we want to change
-            return { ...singleBook, title: newTitle};
-        }
-        return singleBook;
-    })
+      if (singleBook.id === id) {
+        // this is book we want to change
+        return { ...singleBook, ...response.data }; // ...response.data - take properties out of object ad add them into new object we return
+      }
+      return singleBook;
+    });
     setBooks(updatedBooks); // update state with new book
-  }
+  };
   // now we want to take this array and pass it down into the BookList as props. So BooksList will receive 'books' as props (array of objects)
   // inside of BooksList, we will map over this array, and for each object inside array, we will create seperate BookShow component. Passing it down as props called 'book' since we are passing down 1 individual book
-  
+  //console.log(books.id)
   return (
     <div className="app">
-        <h1>Reading List</h1>
-      <BookList bookslist={books} onDelete = {deleteBookById} onEdit = {editBookById}/>
+      <h1>Reading List</h1>
+      <BookList
+        bookslist={books}
+        onDelete={deleteBookById}
+        onEdit={editBookById}
+      />
       <BookCreate onCreate={createBook} />
     </div>
   );
@@ -118,7 +140,19 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
         -can also filter element with particular property
     Modifying elements uses map function 
 
-    ** would be a good idea to go back to optional lectures and copy the examples he gave for modifyig arrays and objects** i missed alot of this
+    ** would be a good idea to go back to optional lectures and copy the examples he gave for modifyig arrays and objects** i missed alot of this(section 7)
        
-*/
 
+    useEffect : used to run code when a component is initially rendered and (sometimes) when it is re rendered. 
+        - first argument is a function that contains code we want to run
+        - second is an array OR nothing. this controls whether the function is executed on rerenders 
+        - second argument is : [], nothing, or [counter]
+        - [] means we will never call it again after its first render
+        - nothing/rempty  means we will call it after every render 
+        -[counter] re renders after counter variable is changed 
+
+        Tricky things around useEffect: 
+            1.) Understand when arrow function gets called 
+               -  immediatley after first render, function to useEffect always called!
+               -  after the first render, the function we passed to useEffect MIGHT be called depedning on second argument []
+*/

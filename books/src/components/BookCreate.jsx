@@ -7,6 +7,7 @@ function BookCreate({ onCreate }) {
   const handleChange = (event) => {
     // event handler used when user changes input in any way. these recieve an event object as argument
     setTitle(event.target.value); // to figure out what was typed in and update title piece of state
+   // console.log(event.target.value)
   };
 
   const handleSubmit = (event) => {

@@ -38,7 +38,7 @@ export default SearchBar;
 /* Order: 
     - user selects input
     - user presses enter. this will trigger a submit event on form 
-    - form event look at whatever prop was passed to onSubmit, and call it and run handleFormSubmit
+    - form event look at whatever prop was passed to onSubmit/onChange, and call it and run handleFormSubmit
 
     Notes on INput form: 
      Our next challenge here was, how can we get user input from the input element to be used later on? how do we read data out of input

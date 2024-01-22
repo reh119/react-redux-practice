@@ -1,0 +1,26 @@
+// api / rest client
+// "server" : "json-server --port 3001 --watch db.json --host 127.0.0.1" <- incase we get error, put this in json file
+
+GET http://localhost:3001/books HTTP/1.1 
+Content-Type: application/json
+
+###
+
+POST http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Harry Potter"
+}
+###
+
+PUT http://localhost:3001/books/90a5 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "dark tower"
+}
+
+###
+DELETE http://localhost:3001/books/90a5 HTTP/1.1
+Content-Type: application/json
