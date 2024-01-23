@@ -142,8 +142,8 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
 
     ** would be a good idea to go back to optional lectures and copy the examples he gave for modifyig arrays and objects** i missed alot of this(section 7)
        
-
-    useEffect : used to run code when a component is initially rendered and (sometimes) when it is re rendered. 
+------
+    useEffect: used to run code when a component is initially rendered and (sometimes) when it is re rendered. 
         - first argument is a function that contains code we want to run
         - second is an array OR nothing. this controls whether the function is executed on rerenders 
         - second argument is : [], nothing, or [counter]
@@ -155,4 +155,27 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
             1.) Understand when arrow function gets called 
                -  immediatley after first render, function to useEffect always called!
                -  after the first render, the function we passed to useEffect MIGHT be called depedning on second argument []
+------------------
+    Context: is like an alternatives to props system. the props system is all about communicate parents and children. context allows us to share data across components even thougb there is no direct link to each other
+            in this project things got kind of tricky due to the passing of props to communicate with parent child or child parent. context will help
+            - context is NOT replacement for props
+            - context is not a replacement for redux
+            - context by itself is like a communication chanel, not caring what data is being shared or how its organized
+            - setting up context is slighlty painful 
+        Using context:
+            - 1.) create context
+                - usually in a new file. we call createContxt and get back the context object name after what its storing. 
+                - this object has two properties, one called provider and the other is consumer 
+                    - consumer: used to get access to data(not often used)
+                    - provider: component used to specify what data we want to share
+            - 2.) Specify the data that will be shared. 
+                --> the value prop is super special. its the data being shared
+                <BookContext.Provider value = {5}>
+                    <MyComponent />  // this component and its children can now access the value shared in context (5)
+                </BookContext.Provider> 
+                    Usually, we create provider as a new component, and how it render the rest if the application. so its on top, and it renders the app component, which in turn renders its children. 
+            - 3.) Consume the data: get access to it inside of a component and use it. 
+
+            
+                
 */
