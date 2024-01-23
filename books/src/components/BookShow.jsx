@@ -1,17 +1,20 @@
 import { useState } from "react";
 import BookEdit from "./BookEdit";
+import { useContext } from "react";
+import BooksContext from "../context/books";
 
-function BookShow({singleBook, onDelete ,onEdit}) {
+// due to refactoring, BooksList was passing down props into this component called singleBook, onDelete, and onEdit. 
+// this is no longer happening. now we need BookShow to reach up to context and get functions it needs.
+//BookShow only needs access to deletebShowById - doesnt need onEdit beacause BookEdit show will call this
+
+function BookShow({ book }) { 
   // user will have the option to click on a delete button in this component and we will have to communicate with app component to do something (delete entry)
   // onDelete being passed all the way from app
   // clicking the pencil icon will toggle showEdit between true and false. showEdit === false displays books title, showEdit ===true displays BookEdit
-
-
   const [showEdit,setShowEdit] = useState(false); 
-
-
+  const {deleteBookById} = useContext(BooksContext);
   const handleDeleteClick = () => {
-    onDelete(singleBook.id);
+    deleteBookById(book.id);
   };
 
   const handleEditClick = () => {
@@ -21,18 +24,17 @@ function BookShow({singleBook, onDelete ,onEdit}) {
 //   const handleSubmit = () => {
 //     setShowEdit(false);
 //   }
-  const handleSubmit = (id,newTitle) => {
+  const handleSubmit = () => {
     setShowEdit(false);
-    onEdit(id,newTitle) // id and title being edited 
+    // onEdit(id,newTitle) // id and title being edited -> after refcator we dont need to call onEdit anymore. will rely on BookEdit component to call this function
   }
 
 
 
-  let content = <h3>{singleBook.title}</h3> // let will let us change this variable
+  let content = <h3>{book.title}</h3> // let will let us change this variable
   if(showEdit){
-      content = <BookEdit onSubmit = {handleSubmit} singleBook={singleBook}/>;
+      content = <BookEdit onSubmit = {handleSubmit} book={book}/>; // still need onSubmit when user hits submit function
   }
-
   return (
     <div className="book-show">
       <div>{content}</div>

@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import BooksContext from "../context/books";
 
-function BookEdit({singleBook,onSubmit}) {
+// due to refactor, BookEdit will need to reach all the way back up to context and get the editBookbyId function
+function BookEdit({book,onSubmit}) {
     // user will have option to click edit icon, this will cause change on the screen. 
 
-    const [title,setTitle] = useState(singleBook.title) // default to current title right befire editing
+    const [title,setTitle] = useState(book.title) // default to current title right befire editing
+    const {editBookById} = useContext(BooksContext);
 
     const handleChange = (event) => {
         setTitle(event.target.value)
@@ -15,7 +18,9 @@ function BookEdit({singleBook,onSubmit}) {
         event.preventDefault();
         //console.log('new title is ', title)
         // onEdit(singleBook.id, title);
-        onSubmit(singleBook.id, title) // gets communicated back up to booShow
+        onSubmit() // gets communicated back up to booShow
+        // due to refactor, we dont need to pass in singleBook.id, title anymore because the BookShow component no longer needs the id or title :) 
+        editBookById(book.id, title);
     }
 
     // now, bookEdit needs to communicate to app.js component and tell it to update a piece of state. (find a book object and change a PROPERTY) ** in optional videos i skipped** or i can reference it in docs

@@ -1,73 +1,29 @@
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+
+import {useEffect, useContext} from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import BooksContext from "./context/books";
 
-function App() { // every time something is re rendered do we start back up at begginnig of PP? 
-  const [books, setBooks] = useState([]);
 
-  const fetchBooks = async () => { // when do we call this? 
-    const response = await axios.get("http://localhost:3001/books");
-    setBooks(response.data);
-  };
+function App() {
+  // every time something is re rendered do we start back up at begginnig of aPP?
 
-  useEffect(() => { 
+  const { fetchBooks } = useContext(BooksContext); // reach into context 
+
+  useEffect(() => {
+    // leave here. this is because we stll want to attempt to fetch books when the app component is first displayed on screen
     fetchBooks();
-  },[])
+  }, []);
 
-  const deleteBookById = async (id) => {
 
-    await axios.delete(`http://localhost:3001/books/${id}`);
-    // removing object out of array, we usually use filter function. reference lecture or react doc
-    const updatedBooks = books.filter((book) => {
-      return book.id !== id;
-      //so say we want to remove book with id of 3, when we find the book with this id, return false, meaning it wont be added to new array leaving book with id 3 out
-    });
-    setBooks(updatedBooks); // update state with new array
-    // now we need to communicate this function to other children components as props
-  };
-
-  const createBook = async (title) => {
-    const response = await axios.post("http://localhost:3001/books", {
-      title, // since its the argument passed in we dont need title: "title"
-    });
-    const updatedBooks = [
-      ...books,
-      response.data,
-      //   { id: Math.round(Math.random() * 9999), title: title }, // pre api line
-    ]; // the '...books' syntax says go and find exisiting books piece of state, copy-paste the contents into new array. after this we add in new objects. order can be flipped to add in at beggining
-    setBooks(updatedBooks); // update books state with new contents from updatedBooks
-  };
-
-  const editBookById = async (id, newTitle) => {
-
-    const response = await axios.put(`http://localhost:3001/books/${id}`,{
-        title: newTitle
-    });
-        // update local book
-    // find object inside array then make change using map
-    const updatedBooks = books.map((singleBook) => {
-      if (singleBook.id === id) {
-        // this is book we want to change
-        return { ...singleBook, ...response.data }; // ...response.data - take properties out of object ad add them into new object we return
-      }
-      return singleBook;
-    });
-    setBooks(updatedBooks); // update state with new book
-  };
   // now we want to take this array and pass it down into the BookList as props. So BooksList will receive 'books' as props (array of objects)
   // inside of BooksList, we will map over this array, and for each object inside array, we will create seperate BookShow component. Passing it down as props called 'book' since we are passing down 1 individual book
   //console.log(books.id)
   return (
     <div className="app">
       <h1>Reading List</h1>
-      <BookList
-        bookslist={books}
-        onDelete={deleteBookById}
-        onEdit={editBookById}
-      />
-      <BookCreate onCreate={createBook} />
+      <BookList />
+      <BookCreate />
     </div>
   );
 }
@@ -75,7 +31,22 @@ function App() { // every time something is re rendered do we start back up at b
 // BookCreate is gonna recieve prop
 export default App;
 
-//Plans:
+/* Refactor Notes **
+ -  Now that we are using context, BooksList and BooksCreate components will not need to be passing props 
+ - we will instead have these components reach up directly to context provider and get access to whatever they need 
+ 1.) Make sure app component can reach up to context, and get access to the fetchBooks function so that when app component is first disolayed on screen we can call fecthBooks and reach out to the api and get list of books
+    this will happen using the useContext function
+ 2.) 
+
+*/
+
+
+
+
+
+
+
+//Plans: all of these plans were pre context version and relied on props. major refactor has been implemented.
 /* Reminder on Event handler: 
     - BookCreate component will need to be able to modify state (that is defined in App component) **children to parent communication**
 
@@ -98,8 +69,7 @@ Inside App component:
     - when we update 'books' state, our component and all its children will re render, and all children will recieve new version of books array with new object we just added.. causing all compoennts to re render
     and new book will appear 
 
-*/
-
+*/ //---------------------------
 /* Component/Design Planning Notes *component diagram in udemy course*
 
     BookCreate - will need access to 'books' piece of state. its job is to add a new object to the array of books as user types it in and presses enter 
@@ -120,6 +90,7 @@ Inside App component:
             - define the state in the LOWEST COMMON parent. 
             -** see reasoning above plan** 
     piece of states: 'books' , that is an array of objects, id title, defined in App comp
+------------------------
 Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE SYSTEM
     - ** eg in createBooks function **
          once we succesfully have title value from user, we need to take this title value and update 'books' pievce of state (book object/array...this is not as simple as using .push)
@@ -141,8 +112,7 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
     Modifying elements uses map function 
 
     ** would be a good idea to go back to optional lectures and copy the examples he gave for modifyig arrays and objects** i missed alot of this(section 7)
-       
-------
+----------------
     useEffect: used to run code when a component is initially rendered and (sometimes) when it is re rendered. 
         - first argument is a function that contains code we want to run
         - second is an array OR nothing. this controls whether the function is executed on rerenders 
