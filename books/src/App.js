@@ -36,9 +36,10 @@ export default App;
  - we will instead have these components reach up directly to context provider and get access to whatever they need 
  1.) Make sure app component can reach up to context, and get access to the fetchBooks function so that when app component is first disolayed on screen we can call fecthBooks and reach out to the api and get list of books
     this will happen using the useContext function
- 2.) 
 
 */
+
+
 
 
 
@@ -145,7 +146,16 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
                 </BookContext.Provider> 
                     Usually, we create provider as a new component, and how it render the rest if the application. so its on top, and it renders the app component, which in turn renders its children. 
             - 3.) Consume the data: get access to it inside of a component and use it. 
+---------------------
 
+Notes on HOOKS: functions that add additional features to components 
+  - useState: allows a component to use the state system
+  - useEffect: allows a component ro run code at specific points in time
+  - useContext: allows a component to access values stored in context. can be used together with props 
+  We can also use custom hooks
+    - functions we write to make reusable bits of logic
+    - usually resue basics hooks like useState, useEffect etc 
+    - can do alot or very litte
             
                 
 */

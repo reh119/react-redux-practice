@@ -1,13 +1,12 @@
 import BookShow from "./BookShow";
-import { useContext } from "react";
-import BooksContext from "../context/books";
+import useBooksContext from "../hooks/use-books-context";
 
 function BookList() { // due to refactor, this compoennt no longer recieves props bookslist, onDelete, onEdit instead calling functions directly using context from provider
 
   // we need to map over the books props which is an array ob objects
   //onDelete is prop being passed in from app
 
-  const { books } = useContext(BooksContext); // rwach into context and get list of books
+  const { books } = useBooksContext(); // rwach into context and get books object -> small hook
   // NOTES 'books' is a singleBook 
 
 // valid to use both context and props 

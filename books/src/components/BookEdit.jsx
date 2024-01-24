@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
-import BooksContext from "../context/books";
+import { useState } from "react";
+import useBooksContext from "../hooks/use-books-context";
 
 // due to refactor, BookEdit will need to reach all the way back up to context and get the editBookbyId function
 function BookEdit({book,onSubmit}) {
     // user will have option to click edit icon, this will cause change on the screen. 
 
     const [title,setTitle] = useState(book.title) // default to current title right befire editing
-    const {editBookById} = useContext(BooksContext);
+    const {editBookById} = useBooksContext();
 
     const handleChange = (event) => {
         setTitle(event.target.value)

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import BookEdit from "./BookEdit";
-import { useContext } from "react";
-import BooksContext from "../context/books";
+import useBooksContext from "../hooks/use-books-context";
 
 // due to refactoring, BooksList was passing down props into this component called singleBook, onDelete, and onEdit. 
 // this is no longer happening. now we need BookShow to reach up to context and get functions it needs.
@@ -12,7 +11,7 @@ function BookShow({ book }) {
   // onDelete being passed all the way from app
   // clicking the pencil icon will toggle showEdit between true and false. showEdit === false displays books title, showEdit ===true displays BookEdit
   const [showEdit,setShowEdit] = useState(false); 
-  const {deleteBookById} = useContext(BooksContext);
+  const {deleteBookById} = useBooksContext();
   const handleDeleteClick = () => {
     deleteBookById(book.id);
   };
@@ -28,8 +27,6 @@ function BookShow({ book }) {
     setShowEdit(false);
     // onEdit(id,newTitle) // id and title being edited -> after refcator we dont need to call onEdit anymore. will rely on BookEdit component to call this function
   }
-
-
 
   let content = <h3>{book.title}</h3> // let will let us change this variable
   if(showEdit){

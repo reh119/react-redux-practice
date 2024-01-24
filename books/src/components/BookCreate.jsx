@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useContext } from "react";
-import BooksContext from "../context/books";
+import useBooksContext from "../hooks/use-books-context";
 
 function BookCreate() {
   // due to refactor using context,  will no longer be recieving onCreate prop. instead component will call createBook function. the onCreate prop was passing the createBooks function previosuly 
@@ -8,7 +7,7 @@ function BookCreate() {
   const [title, setTitle] = useState(""); // needed for input element. we want to wire up value prop and onCHange prop when user enters title and submits
   // we wire up title, and and handleCHange to input value
 
-  const{createBook} = useContext(BooksContext); 
+  const{createBook} = useBooksContext();
 
   const handleChange = (event) => {
     // event handler used when user changes input in any way. these recieve an event object as argument
