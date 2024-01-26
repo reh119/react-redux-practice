@@ -37,7 +37,7 @@ export default App;
  1.) Make sure app component can reach up to context, and get access to the fetchBooks function so that when app component is first disolayed on screen we can call fecthBooks and reach out to the api and get list of books
     this will happen using the useContext function
 
-*/
+----------------------------------*/
 
 
 
@@ -114,7 +114,7 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
 
     ** would be a good idea to go back to optional lectures and copy the examples he gave for modifyig arrays and objects** i missed alot of this(section 7)
 ----------------
-    useEffect: used to run code when a component is initially rendered and (sometimes) when it is re rendered. 
+useEffect: used to run code when a component is initially rendered and (sometimes) when it is re rendered. 
         - first argument is a function that contains code we want to run
         - second is an array OR nothing. this controls whether the function is executed on rerenders 
         - second argument is : [], nothing, or [counter]
@@ -126,8 +126,14 @@ Notes on updated piece of state that is an object/array: ONLY WHEN USING STATE S
             1.) Understand when arrow function gets called 
                -  immediatley after first render, function to useEffect always called!
                -  after the first render, the function we passed to useEffect MIGHT be called depedning on second argument []
+            2.) understanding the arrow functions return value
+               - 
+            3.) understanding stale variable references 
+               - 
+            ---------- More notes on useEffect, understanding what its doing and how it behaves -----------
+            - 
 ------------------
-    Context: is like an alternatives to props system. the props system is all about communicate parents and children. context allows us to share data across components even thougb there is no direct link to each other
+Context: is like an alternatives to props system. the props system is all about communicate parents and children. context allows us to share data across components even thougb there is no direct link to each other
             in this project things got kind of tricky due to the passing of props to communicate with parent child or child parent. context will help
             - context is NOT replacement for props
             - context is not a replacement for redux

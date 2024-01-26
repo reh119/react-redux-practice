@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+anytime we show button element with an svg directly inside of it aka when buttons immediate child is an svg(images) do this 9we did this for spacing metween icon and buttons text
+*/ 
+button > svg { 
+    margin-right: 5px;
+}

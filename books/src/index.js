@@ -39,8 +39,4 @@ A good question is always: what data should be shared through context?
     these terms are a way to figure out how to best design your state.
     - its good practice to kinda go through your app design/diagram and decide whether its an application state or component state x 
 
-
-
-
-
 */
