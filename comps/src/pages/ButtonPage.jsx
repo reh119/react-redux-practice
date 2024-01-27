@@ -1,46 +1,43 @@
-import Accordian from "./components/Accordion";
-
+import Button from "../components/Button"; // from pages, go up one directory, then in components, then in button. "../ goes back one directory"
+import { GoBell, GoCloudDownload, GoDatabase } from "react-icons/go";
+// we will write code out in App.jsx component, then set up navigation to look at these minifeatures we put together.
 // importing icons using react-icons, and we treat them as regulary components
-function App() {
-  const items = [
-    // array of objects/items
-    {
-      id: "2498r",
-      label: "Can I use react on project",
-      content:
-        "you can use react on any content you want. you can use react on any content you want. you can use react on any content you want. you can use react on any content you want. you can use react on any content you want",
-    },
-    {
-      id: "wfjn",
-      label: "Can I use Javascript on project",
-      content:
-        "you can use javascript on any content you want. you can use javascript on any content you want. you can use javascript on any content you want. you can use javascript on any content you want",
-    },
-    {
-      id: "2439r8",
-      label: "Can I use CSS on project",
-      content:
-        "you can use css on any content you want. you can use css on any content you want. you can use css on any content you want. you can use css on any content you want. you can use css on any content you want. you can use css on any content you want.",
-    },
-  ];
-  // pass it down as prop called items
+function ButtonPage() {
   return (
     <div>
-      <Accordian items={items} />
+      <div>
+        <Button success rounded outline className="mb-5">
+          <GoBell />
+          Click Me!
+        </Button>
+      </div>
+      <div>
+        <Button danger outline>
+          {" "}
+          <GoCloudDownload /> Buy Now!
+        </Button>
+      </div>
+      <div>
+        <Button warning>
+          {" "}
+          <GoDatabase /> See Deal!
+        </Button>
+      </div>
+      <div>
+        <Button secondary outline>
+          Hey There{" "}
+        </Button>
+      </div>
+      <div>
+        <Button primary rounded>
+          Something!{" "}
+        </Button>
+      </div>
     </div>
   );
 }
 
-export default App;
-/*
-**challenge** making an accordion
-    hard code text? not such a good idea incase we want to use accordion again
-        - we want to make a single accordion that can be used again and again that can be customized .. hint props 
-            so app will show instance of accordian, and pass down some props (items) that is an array of objects where each object will have info about a section to display. like text. that way we can show multiple accorions 
-            that show different list of expandable sections 
-        - in the structure of accordian, we have a header/label, and underneath it we have content/body. 
-            so we can pass down an array of objects(items). each object will have a content and label property. label will be displayed where user clicks, content is what is hidden/unhidden
-*/
+export default ButtonPage;
 /* 
 
 SideNotes**: Try to make component hierchies 
