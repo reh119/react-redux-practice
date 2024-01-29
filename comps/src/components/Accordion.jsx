@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { GoChevronDown, GoChevronLeft } from "react-icons/go";
 
-function Accordian({ items }) {
+function Accordion({ items }) {
   // state will be used to decide how each indiviual item will be rendered, goal of mapping function is to executed multiple times each time with a different item.
-  const [expandedIndex, setExpandedIndex] = useState(-1); // by default, first item(index 0) will be expanded when first displayed rest will be collapsed
+  const [expandedIndex, setExpandedIndex] = useState(-1); // by default, no item(index -1) will be expanded when first displayed
 
   const handleClick = (nextIndex) => {
     if (expandedIndex === nextIndex) {
@@ -11,7 +11,6 @@ function Accordian({ items }) {
     } else {
       setExpandedIndex(nextIndex);
     }
-
     // close currenlty open tab
   }; // REFER TO LECTURE 184-185 if confused
   /* notes on map function:
@@ -53,8 +52,7 @@ function Accordian({ items }) {
 
   return <div className="border-x border-t rounded">{renderedItems}</div>;
 }
-
-export default Accordian;
+export default Accordion;
 
 /*
     add in event handler and watch for clickEvent on label div. when user clicks on this div, its a sign they want to expand that item.
