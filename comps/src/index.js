@@ -1,13 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import './index.css'
+import "./index.css";
+import { NavigationProvider } from "./context/navigation";
 
 const el = document.getElementById("root");
 const root = ReactDOM.createRoot(el);
 
-root.render(<App />);
-
+root.render(
+  <NavigationProvider>
+    <App />
+  </NavigationProvider>
+);
 
 /*
 Some issues that arise when working on large projects with other engineers is we start to get inconsistent styling like different buttons. How can we fix this?
