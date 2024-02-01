@@ -5,7 +5,10 @@ function SideBar() {
     { label: "Dropdown", path: "/" },
     { label: "Accordion", path: "/accordion" },
     { label: "Buttons", path: "/buttons" },
-    {label: 'Modal', path: '/modal'}
+    {label: 'Modal', path: '/modal'}, 
+    {label: 'Table', path: '/table'}
+
+    
   ];
   // we will map over this array of objects, and for every object we produce a link component using the label to specify what we want to show and path to specofy address user is going to when link clicked
   const renderedLinks = links.map((link) => {
