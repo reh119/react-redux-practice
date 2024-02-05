@@ -1,34 +1,15 @@
 import Table from "./Table"; // we eventually want Sortable table to render table
-import { useState } from "react";
+
 import { GoArrowSmallDown, GoArrowSmallUp } from "react-icons/go";
+import useSort from "../hooks/use-sort";
 
 function SortableTable(props) {
   // no destructruing {} bc we are taking the whole object
   const { config, data } = props;
-
-  const [sortOrder, setSortOrder] = useState(null);
-  const [sortBy, setSortBy] = useState(null); // what column lable we are currently sorting by
-
-  const handleClick = (label) => {
-    // function called with label of column that user clicked on
-    // console.log(label);
-
-    if (sortBy && label !== sortBy) {
-      setSortOrder("asc");
-      setSortBy(label);
-      return;
-    }
-    if (sortOrder === null) {
-      setSortOrder("asc");
-      setSortBy(label);
-    } else if (sortOrder === "asc") {
-      setSortOrder("desc");
-      setSortBy(label);
-    } else if (sortOrder === "desc") {
-      setSortOrder(null);
-      setSortBy(null);
-    }
-  };
+  const { sortBy, sortOrder, sortedData, setSortColumn } = useSort(
+    data,
+    config
+  ); // custom hook!
 
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) {
@@ -41,7 +22,7 @@ function SortableTable(props) {
       header: () => (
         <th
           className="cursor-pointer hover:bg-gray-100"
-          onClick={() => handleClick(column.label)}
+          onClick={() => setSortColumn(column.label)}
         >
           <div className="flex items-center">
             {getIcons(column.label, sortBy, sortOrder)}
@@ -51,28 +32,6 @@ function SortableTable(props) {
       ),
     };
   });
-
-  // Only sort data if sortOrder  && sortBy are not null
-  // make a copy of the data prop.. (never modify array if its part of prop or state system), then sort that new array
-  // find correct sort Value function and use it for sorting..
-
-  let sortedData = data;
-  if (sortOrder && sortBy) {
-    // if not null, we need to sort
-    // find correct sort value function to use
-    const { sortValue } = config.find((column) => column.label === sortBy); // for everyone of those column objects, we will try to find a column object with a label equal to our current sortBy piece of state
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a);
-      const valueB = sortValue(b);
-
-      const reverseOrder = sortOrder === "asc" ? 1 : -1;
-      if (typeof valueA === "string") {
-        return valueA.localeCompare(valueB) * reverseOrder;
-      } else {
-        return (valueA - valueB) * reverseOrder;
-      }
-    });
-  }
 
   return (
     <div>
@@ -122,6 +81,29 @@ export default SortableTable;
     
               sortOrder: null, 'asc' 'desc'-> state to keep track of sort order (keep track of what will next click do. what kind of sort? as well as what arrow to show)
               sortBy  null,'Name', 'Score' -> state to keep track which column we are sorting by
+
+
+----------
+Custom Hooks:
+  Functions that contain some reusbale logic. For example if we had anoter table with different data that we would also sort, we would reuse alot of the same code we did for table
+  custom hooks usually reuse built in hooks like useState and useEffect
+  usually easiest to extract logic into a hook rather than making a hook first. 
+  Plan: 
+    Make a demo component with a tiny bit of logic
+    learn a design process to extract that logic into a custom hook
+    go back to SortableTable and repeat the design process
+     
+    
+    We will make a counter component  that should console log the count every time it changes. (useEffect)
+    it should accept an initialCount as a prop
+
+SortableTable custom hook creation:
+  sortOrder
+  sortBy
+  handleClick
+  updatedConfig
+  ~sortingLogic~
+  JSX
 
 
 */
