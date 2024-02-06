@@ -13,32 +13,20 @@ const reducer = (state, action) => {
   // used by calling dispatch
   switch (action.type) {
     case INCREMENT_COUNT:
-      return {
-        ...state, // all values from exisiting state object(copy and paste)
-        count: state.count + 1,
-      };
-
+     state.count = state.count+1;
+     return;
     case SET_VALUE_TO_ADD:
-      return {
-        ...state,
-        valueToAdd: action.payload,
-      };
+     state.valueToAdd = action.payload
+     return;
     case DECREMENT_COUNT:
-      return {
-        ...state,
-        count: state.count - 1,
-      };
+      state.count = state.count -1; 
+      return;
     case ADD_VALUE_TO_COUNT:
-      return {
-        ...state, // whats the point of this?
-        // state object might have an additional property that we dont update here, so we dont want to lose it! so we make sure we copy and paste it to new object(...state)
-        count: state.count + state.valueToAdd,
-        valueToAdd: 0,
-        //
-      };
-
+     state.count = state.count + state.valueToAdd
+     state.valueToAdd = 0;
+     return;
     default:
-      return state;
+      return;
   }
 
   // return state; //default case
@@ -49,7 +37,7 @@ function CounterPage({ initialCount }) {
   // const [count, setCount] = useState(initialCount);
   // const [valueToAdd, setValueToAdd] = useState(0);
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount, // initial values for this state
     valueToAdd: 0,
   });
