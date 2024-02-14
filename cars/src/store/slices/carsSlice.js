@@ -4,14 +4,14 @@ const carsSlice = createSlice({
   name: "cars",
   initialState: {  // this is object because we have two properties we need to maintain
     searchTerm: "",
-    cars: [],
+    data: [],
   },
   reducers: {
     changeSearchTerm(state, action) {
       state.searchTerm = action.payload; // action is payload that will be new search term
     },
     addCar(state, action) {
-      state.cars.push({
+      state.data.push({
         // has name and cost, we need to get access to other slice (form slice) so we can know what name and cost is. this is not allowed/allowed
         //  assumption -> action.payload === { name: 'ab' , cost: 140}
         name: action.payload.name,
@@ -20,11 +20,11 @@ const carsSlice = createSlice({
       });
     },
     removeCar(state, action) {
-        // assumption -> action.payload === the id of car we want to remove 
-        const updated = state.cars.filter((car) => { // for every 'car' 
-            return car.id !== action.payload.id // return and add every car that does not match the action payload id 
+        // assumption -> action.payload === the id of car we want to remove!!!!! 
+        const updated = state.data.filter((car) => { // for every 'car' 
+            return car.id !== action.payload // return and add every car that does not match the action payload id. 
         });
-        state.cars = updated;  // update state 
+        state.data = updated;  // update state 
     },
   },
 });

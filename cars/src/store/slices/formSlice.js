@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {addCar} from './carsSlice'
 
 const formSlice = createSlice({
   // keeps track of two seperate properties inside initialStore
@@ -16,6 +17,13 @@ const formSlice = createSlice({
       state.cost = action.payload;
     }, // action.payload will tell us new cost
   },
+  extraReducers(builder) { // we want to watch for the cars/addCar action type, so when user adds a car, the fields reset. 
+    builder.addCase(addCar, (state,action) => {
+      state.name = ''; 
+      state.cost = 0; 
+    })
+
+  }
 });
 
 export const {changeName, changeCost} = formSlice.actions; 

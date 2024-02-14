@@ -193,3 +193,33 @@ Note: whenevr we call disptach, how do we know which state to change
 
 
 */
+
+/* 
+Redux Notes:
+  - Redux is a javascript ibrary for managing state using the same techniques as useReducer. 
+  - we still have action objects, disptach function, and reducer functions, as well as creating states we eventually using in components. 
+  - With useReducer, all of our state was created  + maintained in the React World
+  - With Redux, we create a seperate object called the 'store' to create and maintain our state. 
+  - Individual components can connect to the store and access state
+  - React-Redux library helps communicate between the React and Redux side of your project. The Redux Library doesnt assume you are using React
+  - React-Redux helps form the connection between Redux and and React side of your application using similar techniques we learned about like context. 
+  - Another way useReducer and Redux are different is that in useReudcer we made one single reducer function, and we used this one function to manage all of our states. 
+    In Redux, we will have multiple reducer functions, and each reducer function will be in charge of managing a different part of our state.
+  - In Redux, our state objects are usually gonna end up being more complicated. Theyll have several different properties inside them. Each property will have seperate reducer to manage state. 
+  ------
+Why does useReducer/Redux patterns so popular? 
+  - One reason we use Redux boils down to the dispatch function. If we want to change state in any way, we MUST call dispatch!
+  - Especially useful when we have lots of component needing state managment and keeping track of everything.  So we use redux for the central point of changing any state.. disptaching action!
+  - makes it easier to see why state is being updated. 
+  - also makes it easier to add debugging features. (logging)
+  - a downside of this is that we have to write extra code just to communicate to the reducer how state is supposed to change(const string variable for types etc)
+
+  We have two options when using redux 
+    1.) Use 'classic' redux 
+      - older style 
+    2.) Use redux toolkit (rtk) 
+      - rtk is a wrapper around plain redux 
+      - specifically simplifies the action type creation process 
+      - the recommended way moving forward
+
+*/
