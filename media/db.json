@@ -1,32 +1,237 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Myra"
-    },
-    {
-      "name": "Elsie Price",
-      "id": "3"
-    },
-    {
-      "name": "Harold Strosin",
-      "id": "4"
-    },
-    {
-      "id": "80c2",
-      "name": "Velma Schoen"
-    },
-    {
-      "id": "e9e4",
-      "name": "Doreen Jones Jr."
+      "id": "39c1",
+      "name": "Alan Wehner"
     }
   ],
   "albums": [
     {
-      "id": 10, 
+      "id": "10",
       "title": "Hiking Trip",
-      "userId": 1 
+      "userId": 1
+    },
+    {
+      "id": "59bf",
+      "userId": null,
+      "title": "Fantastic Soft Chair"
+    },
+    {
+      "id": "237d",
+      "userId": null,
+      "title": "Awesome Frozen Table"
+    },
+    {
+      "id": "fab5",
+      "userId": null,
+      "title": "Ergonomic Wooden Bacon"
+    },
+    {
+      "id": "f714",
+      "userId": null,
+      "title": "Sleek Rubber Pants"
+    },
+    {
+      "id": "6dbe",
+      "userId": null,
+      "title": "Small Rubber Computer"
+    },
+    {
+      "id": "1da4",
+      "userId": null,
+      "title": "Fantastic Wooden Chair"
+    },
+    {
+      "id": "6bef",
+      "userId": null,
+      "title": "Tasty Bronze Keyboard"
+    },
+    {
+      "id": "81b7",
+      "userId": null,
+      "title": "Small Steel Shoes"
+    },
+    {
+      "id": "a0fa",
+      "userId": null,
+      "title": "Handmade Plastic Gloves"
+    },
+    {
+      "id": "fc0c",
+      "userId": null,
+      "title": "Elegant Frozen Salad"
+    },
+    {
+      "id": "7882",
+      "userId": null,
+      "title": "Elegant Rubber Sausages"
+    },
+    {
+      "id": "5c97",
+      "userId": null,
+      "title": "Handmade Wooden Computer"
+    },
+    {
+      "id": "26cb",
+      "userId": null,
+      "title": "Luxurious Fresh Shirt"
+    },
+    {
+      "id": "56eb",
+      "userId": null,
+      "title": "Incredible Fresh Salad"
+    },
+    {
+      "id": "1a44",
+      "userId": null,
+      "title": "Licensed Wooden Keyboard"
+    },
+    {
+      "id": "6cbd",
+      "userId": null,
+      "title": "Elegant Bronze Hat"
+    },
+    {
+      "id": "d1f2",
+      "userId": null,
+      "title": "Luxurious Frozen Fish"
+    },
+    {
+      "id": "fcdf",
+      "userId": null,
+      "title": "Luxurious Plastic Chair"
+    },
+    {
+      "id": "970f",
+      "userId": null,
+      "title": "Electronic Granite Pizza"
+    },
+    {
+      "id": "1d69",
+      "userId": null,
+      "title": "Sleek Fresh Chicken"
+    },
+    {
+      "id": "3779",
+      "userId": null,
+      "title": "Licensed Plastic Shirt"
+    },
+    {
+      "id": "7b2e",
+      "userId": null,
+      "title": "Ergonomic Wooden Table"
+    },
+    {
+      "id": "ec71",
+      "userId": null,
+      "title": "Fantastic Concrete Pizza"
+    },
+    {
+      "id": "9ef6",
+      "userId": null,
+      "title": "Elegant Frozen Car"
+    },
+    {
+      "id": "5fca",
+      "userId": null,
+      "title": "Practical Soft Salad"
+    },
+    {
+      "id": "2d75",
+      "userId": null,
+      "title": "Rustic Bronze Cheese"
+    },
+    {
+      "id": "a33a",
+      "userId": null,
+      "title": "Modern Plastic Chair"
+    },
+    {
+      "id": "9df7",
+      "userId": null,
+      "title": "Rustic Bronze Table"
+    },
+    {
+      "id": "78f0",
+      "userId": null,
+      "title": "Unbranded Wooden Car"
+    },
+    {
+      "id": "f926",
+      "userId": null,
+      "title": "Luxurious Granite Table"
+    },
+    {
+      "id": "1d36",
+      "userId": null,
+      "title": "Tasty Plastic Hat"
+    },
+    {
+      "id": "d356",
+      "userId": null,
+      "title": "Oriental Metal Salad"
+    },
+    {
+      "id": "3fec",
+      "userId": null,
+      "title": "Incredible Bronze Chips"
+    },
+    {
+      "id": "b7d9",
+      "userId": null,
+      "title": "Intelligent Bronze Mouse"
+    },
+    {
+      "id": "4802",
+      "userId": null,
+      "title": "Ergonomic Wooden Shoes"
+    },
+    {
+      "id": "c911",
+      "userId": null,
+      "title": "Handmade Plastic Keyboard"
+    },
+    {
+      "id": "8dd8",
+      "userId": null,
+      "title": "Unbranded Rubber Car"
+    },
+    {
+      "id": "33cb",
+      "userId": null,
+      "title": "Handmade Plastic Ball"
+    },
+    {
+      "id": "b13f",
+      "userId": null,
+      "title": "Unbranded Bronze Mouse"
+    },
+    {
+      "id": "21bb",
+      "userId": null,
+      "title": "Fantastic Steel Fish"
+    },
+    {
+      "id": "46e7",
+      "userId": "39c1",
+      "title": "Luxurious Wooden Tuna"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "id": "e87f",
+      "albumId": "33cb",
+      "url": "https://loremflickr.com/150/150/abstract?lock=93326"
+    },
+    {
+      "id": "bfdc",
+      "albumId": "33cb",
+      "url": "https://loremflickr.com/150/150/abstract?lock=29672"
+    },
+    {
+      "id": "87a6",
+      "albumId": "46e7",
+      "url": "https://loremflickr.com/150/150/abstract?lock=64286"
+    }
+  ]
 }
