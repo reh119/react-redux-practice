@@ -56,4 +56,6 @@ export default CarList;
             2.) import the 'useSelector' hook from react-redux ( hook will allow us to reach into redux store and access state inside of it)
             3.) call the hook, passing in a selector function
             4.) use the state! anytime state changes, the component will automatically render 
+
+            **Note** : confusing part here was the bold search part , and slighly total cost logic
   */

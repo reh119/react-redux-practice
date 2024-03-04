@@ -1,0 +1,6 @@
+{
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.mouseWheelScrollSensitivity": 1,
+    "editor.smoothScrolling": true,
+    "workbench.list.smoothScrolling": false
+}
